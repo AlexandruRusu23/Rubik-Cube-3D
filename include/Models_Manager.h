@@ -7,6 +7,7 @@
 #include "IGameObject.h"
 #include "Triangle.h"
 #include "Quad.h"
+#include "Cube.h"
 
 using namespace Rendering;
 
@@ -19,6 +20,7 @@ namespace Managers
     ~Models_Manager();
 
     void Draw();
+    void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix);
     void Update();
     void DeleteModel(const std::string& gameModelName);
     const IGameObject& GetModel(const std::string& gameModelName) const;

@@ -11,7 +11,7 @@ using namespace Core;
 
 int main(int argc, char **argv)
 {
-	WindowInfo window(std::string("Scene2D"), 300, 300, 800, 600, true);
+	WindowInfo window(std::string("Scene3D"), 300, 300, 800, 600, true);
 
 	ContextInfo context(4, 5, true);
 	FrameBufferInfo frameBufferInfo(true, true, true, true);

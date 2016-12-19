@@ -16,6 +16,11 @@ Models_Manager::Models_Manager()
   quad->SetProgram(Shader_Manager::GetShader("colorShader"));
   quad->Create();
   gameModelList["quad"] = quad;
+
+  Models::Cube* cube = new Models::Cube();
+  cube->SetProgram(Shader_Manager::GetShader("colorShader"));
+  cube->Create();
+  gameModelList["cube"] = cube;
 }
 
 Models_Manager::~Models_Manager()
@@ -53,4 +58,12 @@ void Models_Manager::Draw()
   {
     model.second->Draw();
   }
+}
+
+void Models_Manager::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
+{
+	for (auto model : gameModelList)
+	{
+		model.second->Draw(projection_matrix, view_matrix);
+	}
 }
