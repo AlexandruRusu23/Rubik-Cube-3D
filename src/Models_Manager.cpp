@@ -10,7 +10,7 @@ Models_Manager::Models_Manager()
   cube->SetProgram(Shader_Manager::GetShader("colorShader"));
   cube->Create();
   gameModelList["cube"] = cube;
-  */
+*/
 
   Models::CubeIndex* cubeIndex = new Models::CubeIndex();
   cubeIndex->SetProgram(Shader_Manager::GetShader("colorShader"));

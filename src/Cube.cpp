@@ -127,7 +127,7 @@ void Cube::Create()
     this->vao = vao;
     this->vbos.push_back(vbo);
 
-    rotation_speed = glm::vec3(90.0, 90.0, 90.0);
+    rotation_speed = glm::vec3(30.0, 30.0, 30.0);
     rotation = glm::vec3(0.0, 0.0, 0.0);
 }
 
@@ -139,19 +139,16 @@ void Cube::Update()
 void Cube::Draw(const glm::mat4& projection_matrix,
                 const glm::mat4& view_matrix)
 {
-    rotation = 0.00005f * rotation_speed + rotation;
+    rotation = 0.01f * rotation_speed + rotation;
 
-    glm::vec3 rotation_sin = glm::vec3(rotation.x * PI / 10, rotation.y * PI / 10, rotation.z * PI / 10);
+    glm::vec3 rotation_sin = glm::vec3(rotation.x * PI / 180, rotation.y * PI / 180, rotation.z * PI / 180);
 
     glUseProgram(program);
-    glUniform3f(glGetUniformLocation(program, "rotation"),
-                rotation_sin.x,
-                rotation_sin.y,
-                rotation_sin.z);
-    glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1,
-                     false, &view_matrix[0][0]);
-    glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"),
-                                            1, false, &projection_matrix[0][0]);
+
+    glUniform3f(glGetUniformLocation(program, "rotation"), rotation_sin.x, rotation_sin.y, rotation_sin.z);
+
+    glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &view_matrix[0][0]);
+    glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
     glBindVertexArray(vao);
     glDrawArrays(GL_TRIANGLES, 0, 36);
 }

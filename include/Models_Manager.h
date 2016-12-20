@@ -6,6 +6,7 @@
 #include "Shader_Manager.h"
 #include "IGameObject.h"
 #include "CubeIndex.h"
+#include "Cube.h"
 
 using namespace Rendering;
 

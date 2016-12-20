@@ -22,6 +22,7 @@ namespace Rendering
 
     private:
       glm::vec3 rotation, rotation_speed;
+      glm::mat4 translate_matrix;
       time_t timer;
     };
   }
