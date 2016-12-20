@@ -5,22 +5,17 @@ using namespace Rendering;
 
 Models_Manager::Models_Manager()
 {
-  // triangle game object
-  Models::Triangle* triangle = new Models::Triangle();
-  triangle->SetProgram(Shader_Manager::GetShader("colorShader"));
-  triangle->Create();
-  gameModelList["triangle"] = triangle;
-
-  // quad game object
-  Models::Quad* quad = new Models::Quad();
-  quad->SetProgram(Shader_Manager::GetShader("colorShader"));
-  quad->Create();
-  gameModelList["quad"] = quad;
-
+  /*
   Models::Cube* cube = new Models::Cube();
   cube->SetProgram(Shader_Manager::GetShader("colorShader"));
   cube->Create();
   gameModelList["cube"] = cube;
+  */
+
+  Models::CubeIndex* cubeIndex = new Models::CubeIndex();
+  cubeIndex->SetProgram(Shader_Manager::GetShader("colorShader"));
+  cubeIndex->Create();
+  gameModelList["cubeIndex"] = cubeIndex;
 }
 
 Models_Manager::~Models_Manager()

@@ -5,9 +5,7 @@
 #include <map>
 #include "Shader_Manager.h"
 #include "IGameObject.h"
-#include "Triangle.h"
-#include "Quad.h"
-#include "Cube.h"
+#include "CubeIndex.h"
 
 using namespace Rendering;
 

@@ -15,7 +15,7 @@ namespace Core
 
 		WindowInfo()
 		{
-			name = "Scene2D";
+			name = "Scene3D";
 			width = 800; height = 600;
 			position_x = 300;
 			position_y = 300;
