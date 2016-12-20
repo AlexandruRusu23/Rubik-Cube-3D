@@ -5,13 +5,6 @@ using namespace Rendering;
 
 Models_Manager::Models_Manager()
 {
-  /*
-  Models::Cube* cube = new Models::Cube();
-  cube->SetProgram(Shader_Manager::GetShader("colorShader"));
-  cube->Create();
-  gameModelList["cube"] = cube;
-*/
-
   Models::CubeIndex* cubeIndex = new Models::CubeIndex();
   cubeIndex->SetProgram(Shader_Manager::GetShader("colorShader"));
   cubeIndex->Create();

@@ -11,7 +11,7 @@ Scene_Manager::Scene_Manager()
   view_matrix = glm::mat4(1.0f, 0.0f, 0.0f, 0.0f,
                           0.0f, 1.0f, 0.0f, 0.0f,
                           0.0f, 0.0f, -1.0f, 0.0f,
-                          0.0f, 0.0f, 10.0f, 1.0f);
+                          0.0f, 0.0f, 5.0f, 1.0f);
 
   models_manager = new Models_Manager();
 }
