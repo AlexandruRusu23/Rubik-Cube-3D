@@ -3,9 +3,7 @@
 Core::IListener* Core::Init::Init_GLUT::listener = NULL;
 Core::WindowInfo Core::Init::Init_GLUT::windowInformation;
 
-void Core::Init::Init_GLUT::Init(const Core::WindowInfo& windowInfo,
-					 					 const Core::ContextInfo& contextInfo,
-					 				 	 const Core::FrameBufferInfo& frameBufferInfo)
+void Core::Init::Init_GLUT::Init(const Core::WindowInfo& windowInfo, const Core::ContextInfo& contextInfo, const Core::FrameBufferInfo& frameBufferInfo)
 {
 	int fakeargc = 1;
 	char szFake[5] = "fake";
@@ -14,8 +12,7 @@ void Core::Init::Init_GLUT::Init(const Core::WindowInfo& windowInfo,
 
 	if(contextInfo.core)
 	{
-		glutInitContextVersion(contextInfo.major_version,
-							   contextInfo.minor_version);
+		glutInitContextVersion(contextInfo.major_version, contextInfo.minor_version);
 		glutInitContextProfile(GLUT_CORE_PROFILE);
 	}
 	else
@@ -24,8 +21,7 @@ void Core::Init::Init_GLUT::Init(const Core::WindowInfo& windowInfo,
 	}
 
 	glutInitDisplayMode(frameBufferInfo.flags);
-	glutInitWindowPosition(windowInfo.position_x,
-						   windowInfo.position_y);
+	glutInitWindowPosition(windowInfo.position_x, windowInfo.position_y);
 	glutInitWindowSize(windowInfo.width, windowInfo.height);
 
 	glutCreateWindow(windowInfo.name.c_str());
@@ -83,10 +79,7 @@ void Core::Init::Init_GLUT::ReshapeCallback(int width, int height)
 	{
 		if(listener)
 		{
-			listener->NotifyReshape(width,
-															height,
-															windowInformation.width,
-															windowInformation.height);
+			listener->NotifyReshape(width, height, windowInformation.width, windowInformation.height);
 		}
 		windowInformation.width = width;
 		windowInformation.height = height;
@@ -113,8 +106,7 @@ void Core::Init::Init_GLUT::SetListener(Core::IListener*& iListener)
 	listener = iListener;
 }
 
-void Core::Init::Init_GLUT::PrintOpenGLInfo(const Core::WindowInfo& windowInfo,
-																const Core::ContextInfo& contextInfo)
+void Core::Init::Init_GLUT::PrintOpenGLInfo(const Core::WindowInfo& windowInfo, const Core::ContextInfo& contextInfo)
 {
 	const unsigned char* renderer = glGetString(GL_RENDERER);
 	const unsigned char* vendor = glGetString(GL_VENDOR);

@@ -16,9 +16,7 @@ namespace Core
 		class Init_GLUT
 		{
 		public:
-			static void Init(const Core::WindowInfo& windowInfo,
-							 const Core::ContextInfo& contextInfo,
-							 const Core::FrameBufferInfo& framebufferInfo);
+			static void Init(const Core::WindowInfo& windowInfo, const Core::ContextInfo& contextInfo, const Core::FrameBufferInfo& framebufferInfo);
 		public:
 			static void SetListener(Core::IListener*& iListener);
 
@@ -28,8 +26,7 @@ namespace Core
 			void EnterFullscreen();
 			void ExitFullscreen();
 
-			static void PrintOpenGLInfo(const Core::WindowInfo& windowInfo,
-										const Core::ContextInfo& context);
+			static void PrintOpenGLInfo(const Core::WindowInfo& windowInfo, const Core::ContextInfo& context);
 		private:
 			static Core::IListener* listener;
 			static Core::WindowInfo windowInformation;

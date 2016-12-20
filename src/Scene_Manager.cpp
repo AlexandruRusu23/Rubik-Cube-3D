@@ -6,9 +6,7 @@ Scene_Manager::Scene_Manager()
   glEnable(GL_DEPTH_TEST);
 
   shader_manager = new Shader_Manager();
-  shader_manager->CreateProgram("colorShader",
-                                "Vertex_Shader.glsl",
-                                "Fragment_Shader.glsl");
+  shader_manager->CreateProgram("colorShader", "Vertex_Shader.glsl", "Fragment_Shader.glsl");
 
   view_matrix = glm::mat4(1.0f, 0.0f, 0.0f, 0.0f,
                           0.0f, 1.0f, 0.0f, 0.0f,
@@ -42,13 +40,9 @@ void Scene_Manager::NotifyEndFrame()
 
 }
 
-void Scene_Manager::NotifyReshape(int width,
-                                  int height,
-                                  int previous_width,
-                                  int previous_height)
+void Scene_Manager::NotifyReshape(int width, int height, int previous_width, int previous_height)
 {
-  float ar = (float)glutGet(GLUT_WINDOW_WIDTH) /
-             (float)glutGet(GLUT_WINDOW_HEIGHT);
+  float ar = (float)glutGet(GLUT_WINDOW_WIDTH) / (float)glutGet(GLUT_WINDOW_HEIGHT);
   float angle = 45.0f, near1 = 0.1f, far1 = 2000.0f;
 
   projection_matrix[0][0] = 1.0f / (ar * tan(angle / 2.0f));

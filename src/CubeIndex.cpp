@@ -89,9 +89,10 @@ void CubeIndex::Create()
     this->vbos.push_back(vbo);
     this->vbos.push_back(ibo);
 
-    rotation_speed = glm::vec3(30.0, 30.0, 30.0);
+    rotation_speed = glm::vec3(10.0, 10.0, 10.0);
     rotation = glm::vec3(0.0, 0.0, 0.0);
-    translate_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(5.0, 5.0, 0.0));
+    translate = glm::vec3(3.0, 3.0, 0.0);
+    translate_matrix = glm::translate(glm::mat4(1.0f), translate);
 }
 
 void CubeIndex::Update()
@@ -99,8 +100,7 @@ void CubeIndex::Update()
 
 }
 
-void CubeIndex::Draw(const glm::mat4& projection_matrix,
-                const glm::mat4& view_matrix)
+void CubeIndex::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
     rotation = 0.01f * rotation_speed + rotation;
 

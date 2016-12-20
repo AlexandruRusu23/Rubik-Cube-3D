@@ -15,10 +15,7 @@ namespace Managers
     virtual void NotifyBeginFrame();
     virtual void NotifyDisplayFrame();
     virtual void NotifyEndFrame();
-    virtual void NotifyReshape(int width,
-                               int height,
-                               int previous_width,
-                               int previous_height);
+    virtual void NotifyReshape(int width, int height, int previous_width, int previous_height);
 
   private:
     Managers::Shader_Manager* shader_manager;

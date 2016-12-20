@@ -65,9 +65,7 @@ GLuint Shader_Manager::CreateShader(GLenum shaderType, const std::string& source
 	return shader;
 }
 
-void Shader_Manager::CreateProgram (const std::string& shaderName,
-								  const std::string& VertexShaderFilename,
-								  const std::string& FragmentShaderFilename)
+void Shader_Manager::CreateProgram (const std::string& shaderName, const std::string& VertexShaderFilename, const std::string& FragmentShaderFilename)
 {
 	std::string vertexShaderCode = ReadShader(VertexShaderFilename);
 	std::string fragmentShaderCode = ReadShader(FragmentShaderFilename);

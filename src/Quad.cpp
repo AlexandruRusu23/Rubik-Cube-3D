@@ -15,14 +15,10 @@ void Quad::Create()
 
   std::vector<VertexFormat> vertices;
 
-  vertices.push_back(VertexFormat(glm::vec3(-0.5, 0.0, 0.0),
-                                  glm::vec4( 1, 0, 0, 1)));
-  vertices.push_back(VertexFormat(glm::vec3(-0.5, 0.9, 0.0),
-                                  glm::vec4( 0, 0, 0, 1)));
-  vertices.push_back(VertexFormat(glm::vec3( 0.5, 0.0, 0.0),
-                                  glm::vec4( 0, 1, 0, 1)));
-  vertices.push_back(VertexFormat(glm::vec3( 0.5, 0.9, 0.0),
-                                  glm::vec4( 0, 0, 1, 1)));
+  vertices.push_back(VertexFormat(glm::vec3(-0.5, 0.0, 0.0), glm::vec4( 1, 0, 0, 1)));
+  vertices.push_back(VertexFormat(glm::vec3(-0.5, 0.9, 0.0), glm::vec4( 0, 0, 0, 1)));
+  vertices.push_back(VertexFormat(glm::vec3( 0.5, 0.0, 0.0), glm::vec4( 0, 1, 0, 1)));
+  vertices.push_back(VertexFormat(glm::vec3( 0.5, 0.9, 0.0), glm::vec4( 0, 0, 1, 1)));
 
   glGenBuffers(1, &vbo);
   glBindBuffer(GL_ARRAY_BUFFER, vbo);

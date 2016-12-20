@@ -22,10 +22,7 @@ namespace Core
 			isReshapable = true;
 		}
 
-		WindowInfo(std::string name,
-				   int start_position_x, int start_position_y,
-				   int width, int height,
-				   bool isReshapable)
+		WindowInfo(std::string name, int start_position_x, int start_position_y, int width, int height, bool isReshapable)
 		{
 			this->name = name;
 			this->width = width;
