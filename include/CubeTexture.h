@@ -1,5 +1,5 @@
-#ifndef CUBEINDEX_H
-#define CUBEINDEX_H
+#ifndef CUBETEXTURE_H
+#define CUBETEXTURE_H
 
 #include "Model.h"
 #include <time.h>
@@ -7,11 +7,11 @@
 
 using namespace BasicEngine::Rendering::Models;
 
-class CubeIndex : public Model
+class CubeTexture : public Model
 {
 public:
-  CubeIndex();
-  ~CubeIndex();
+  CubeTexture();
+  ~CubeTexture();
 
   void Create();
   virtual void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override final;

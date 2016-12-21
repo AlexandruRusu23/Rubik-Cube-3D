@@ -1,20 +1,20 @@
-#include "CubeIndex.h"
+#include "CubeTexture.h"
 using namespace BasicEngine;
 using namespace Rendering;
 
 #define PI 3.14159265
 
-CubeIndex::CubeIndex()
+CubeTexture::CubeTexture()
 {
 
 }
 
-CubeIndex::~CubeIndex()
+CubeTexture::~CubeTexture()
 {
 
 }
 
-void CubeIndex::Create()
+void CubeTexture::Create()
 {
     GLuint vao;
     GLuint vbo;
@@ -36,40 +36,40 @@ void CubeIndex::Create()
     }; //bottom
 
     //front
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec4(0, 0, 1, 1)));
-    vertices.push_back(VertexFormat(glm::vec3( 1.0, -1.0, 1.0), glm::vec4(1, 0, 1, 1)));
-    vertices.push_back(VertexFormat(glm::vec3( 1.0, 1.0, 1.0), glm::vec4(1, 1, 1, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, 1.0), glm::vec4(0, 1, 1, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(0, 0)));
+    vertices.push_back(VertexFormat(glm::vec3( 1.0, -1.0, 1.0), glm::vec2(1, 0)));
+    vertices.push_back(VertexFormat(glm::vec3( 1.0, 1.0, 1.0), glm::vec2(1, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, 1.0), glm::vec2(0, 1)));
 
     //right
-    vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec4(1, 1, 1, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, -1.0), glm::vec4(1, 1, 0, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec4(1, 0, 0, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, 1.0), glm::vec4(1, 0, 1, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec2(0, 0)));
+    vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, -1.0), glm::vec2(1, 0)));
+    vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(1, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, 1.0), glm::vec2(0, 1)));
 
     //back
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0), glm::vec4(0, 0, 0, 1)));
-    vertices.push_back(VertexFormat(glm::vec3( 1.0, -1.0, -1.0), glm::vec4(1, 0, 0, 1)));
-    vertices.push_back(VertexFormat(glm::vec3( 1.0, 1.0, -1.0), glm::vec4(1, 1, 0, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec4(0, 1, 0, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0), glm::vec2(0, 0)));
+    vertices.push_back(VertexFormat(glm::vec3( 1.0, -1.0, -1.0), glm::vec2(1, 0)));
+    vertices.push_back(VertexFormat(glm::vec3( 1.0, 1.0, -1.0), glm::vec2(1, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(0, 1)));
 
     //left
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0), glm::vec4(0, 0, 0, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec4(0, 0, 1, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, 1.0), glm::vec4(0, 1, 1, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec4(0, 1, 0, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0), glm::vec2(0, 0)));
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(1, 0)));
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, 1.0), glm::vec2(1, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(0, 1)));
 
     //upper
-    vertices.push_back(VertexFormat(glm::vec3( 1.0, 1.0, 1.0), glm::vec4(1, 1, 1, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, 1.0), glm::vec4(0, 1, 1, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec4(0, 1, 0, 1)));
-    vertices.push_back(VertexFormat(glm::vec3( 1.0, 1.0, -1.0), glm::vec4(1, 1, 0, 1)));
+    vertices.push_back(VertexFormat(glm::vec3( 1.0, 1.0, 1.0), glm::vec2(0, 0)));
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, 1.0), glm::vec2(1, 0)));
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(1, 1)));
+    vertices.push_back(VertexFormat(glm::vec3( 1.0, 1.0, -1.0), glm::vec2(0, 1)));
 
     //bottom
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0), glm::vec4(0, 0, 0, 1)));
-    vertices.push_back(VertexFormat(glm::vec3( 1.0, -1.0, -1.0), glm::vec4(1, 0, 0, 1)));
-    vertices.push_back(VertexFormat(glm::vec3( 1.0, -1.0, 1.0), glm::vec4(1, 0, 1, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec4(0, 0, 1, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0), glm::vec2(0, 0)));
+    vertices.push_back(VertexFormat(glm::vec3( 1.0, -1.0, -1.0), glm::vec2(1, 0)));
+    vertices.push_back(VertexFormat(glm::vec3( 1.0, -1.0, 1.0), glm::vec2(1, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(0, 1)));
 
     glGenBuffers(1, &vbo);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -96,7 +96,7 @@ void CubeIndex::Create()
     translate_matrix = glm::translate(glm::mat4(1.0f), translate);
 }
 
-void CubeIndex::Update()
+void CubeTexture::Update()
 {
     rotation = 0.01f * rotation_speed + rotation;
     rotation_sin = glm::vec3(rotation.x * PI / 180, rotation.y * PI / 180, rotation.z * PI / 180);
@@ -109,10 +109,15 @@ void CubeIndex::Update()
     translate_matrix = glm::translate(glm::mat4(1.0f), translate);
 }
 
-void CubeIndex::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
+void CubeTexture::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
     glUseProgram(program);
     glBindVertexArray(vao);
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, this->GetTexture("Create"));
+    unsigned int textureLocation = glGetUniformLocation(program, "texture1");
+    glUniform1i(textureLocation, 0);
 
     glUniform3f(glGetUniformLocation(program, "rotation"), rotation_sin.x, rotation_sin.y, rotation_sin.z);
     glUniformMatrix4fv(glGetUniformLocation(program, "translate_matrix"), 1, GL_FALSE, &translate_matrix[0][0]);

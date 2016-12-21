@@ -22,13 +22,13 @@ namespace BasicEngine
 		Managers::Shader_Manager* GetShader_Manager() const;
 		Managers::Models_Manager* GetModels_Manager() const;
 
-		//TextureLoader* GetTexture_Loader() const;
+		TextureLoader* GetTexture_Loader() const;
 	private:
 		Managers::Scene_Manager*  m_scene_manager;
 		Managers::Shader_Manager* m_shader_manager;
 		Managers::Models_Manager* m_models_manager;
 
-		//TextureLoader* m_texture_loader;
+		TextureLoader* m_texture_loader;
 	};
 }
 
