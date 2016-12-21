@@ -5,13 +5,12 @@ using namespace Managers;
 Scene_Manager::Scene_Manager()
 {
   glEnable(GL_DEPTH_TEST);
-  glEnable(GL_CULL_FACE);
+  //glEnable(GL_CULL_FACE);
 
   view_matrix = glm::mat4(1.0f, 0.0f, 0.0f, 0.0f,
                           0.0f, 1.0f, 0.0f, 0.0f,
                           0.0f, 0.0f, -1.0f, 0.0f,
                           0.0f, 0.0f, 10.0f, 1.0f);
-
 }
 
 Scene_Manager::~Scene_Manager()
@@ -19,8 +18,30 @@ Scene_Manager::~Scene_Manager()
 
 }
 
+void Scene_Manager::NotifyKeyboardPressed(unsigned char key, int x, int y)
+{
+  if(key == 27)
+    exit(0);
+}
+
+void Scene_Manager::NotifySpecialKeyboardPressed(int key, int x, int y)
+{
+  switch (key)
+  {
+		case GLUT_KEY_LEFT :
+			break;
+		case GLUT_KEY_RIGHT :
+      break;
+		case GLUT_KEY_UP :
+      break;
+		case GLUT_KEY_DOWN :
+      break;
+	}
+}
+
 void Scene_Manager::NotifyBeginFrame()
 {
+  models_manager->Move();
   models_manager->Update();
 }
 

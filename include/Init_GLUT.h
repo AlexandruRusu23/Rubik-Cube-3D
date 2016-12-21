@@ -40,7 +40,7 @@ namespace BasicEngine
 			private:
 				static Core::IListener* listener;
 				static Core::WindowInfo windowInformation;
-				
+
 			public:
 				static void SetListener(Core::IListener* iListener);
 			};

@@ -25,6 +25,11 @@ void Model::Update()
 
 }
 
+void Model::Move()
+{
+  
+}
+
 void Model::SetProgram(GLuint program)
 {
   this->program = program;

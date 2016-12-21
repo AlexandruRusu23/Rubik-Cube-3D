@@ -35,40 +35,40 @@ void CubeIndex::Create()
       20, 21, 22, 20, 22, 23
     }; //bottom
 
-    //front
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec4(0, 0, 1, 1)));
-    vertices.push_back(VertexFormat(glm::vec3( 1.0, -1.0, 1.0), glm::vec4(1, 0, 1, 1)));
-    vertices.push_back(VertexFormat(glm::vec3( 1.0, 1.0, 1.0), glm::vec4(1, 1, 1, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, 1.0), glm::vec4(0, 1, 1, 1)));
+    //front -- red
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec4(1, 0, 0, 1)));
+    vertices.push_back(VertexFormat(glm::vec3( 1.0, -1.0, 1.0), glm::vec4(1, 0, 0, 1)));
+    vertices.push_back(VertexFormat(glm::vec3( 1.0, 1.0, 1.0), glm::vec4(1, 0, 0, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, 1.0), glm::vec4(1, 0, 0, 1)));
 
-    //right
+    //right -- white
     vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec4(1, 1, 1, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, -1.0), glm::vec4(1, 1, 0, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec4(1, 0, 0, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, 1.0), glm::vec4(1, 0, 1, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, -1.0), glm::vec4(1, 1, 1, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec4(1, 1, 1, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, 1.0), glm::vec4(1, 1, 1, 1)));
 
-    //back
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0), glm::vec4(0, 0, 0, 1)));
-    vertices.push_back(VertexFormat(glm::vec3( 1.0, -1.0, -1.0), glm::vec4(1, 0, 0, 1)));
-    vertices.push_back(VertexFormat(glm::vec3( 1.0, 1.0, -1.0), glm::vec4(1, 1, 0, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec4(0, 1, 0, 1)));
+    //back -- orange
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0), glm::vec4(1, 0.5, 0, 1)));
+    vertices.push_back(VertexFormat(glm::vec3( 1.0, -1.0, -1.0), glm::vec4(1, 0.5, 0, 1)));
+    vertices.push_back(VertexFormat(glm::vec3( 1.0, 1.0, -1.0), glm::vec4(1, 0.5, 0, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec4(1, 0.5, 0, 1)));
 
-    //left
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0), glm::vec4(0, 0, 0, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec4(0, 0, 1, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, 1.0), glm::vec4(0, 1, 1, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec4(0, 1, 0, 1)));
+    //left -- yellow
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0), glm::vec4(1, 1, 0, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec4(1, 1, 0, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, 1.0), glm::vec4(1, 1, 0, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec4(1, 1, 0, 1)));
 
-    //upper
-    vertices.push_back(VertexFormat(glm::vec3( 1.0, 1.0, 1.0), glm::vec4(1, 1, 1, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, 1.0), glm::vec4(0, 1, 1, 1)));
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec4(0, 1, 0, 1)));
-    vertices.push_back(VertexFormat(glm::vec3( 1.0, 1.0, -1.0), glm::vec4(1, 1, 0, 1)));
+    //upper -- green
+    vertices.push_back(VertexFormat(glm::vec3( 1.0, 1.0, 1.0), glm::vec4(0.0, 0.5, 0, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, 1.0), glm::vec4(0.0, 0.5, 0, 1)));
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec4(0.0, 0.5, 0, 1)));
+    vertices.push_back(VertexFormat(glm::vec3( 1.0, 1.0, -1.0), glm::vec4(0.0, 0.5, 0, 1)));
 
-    //bottom
-    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0), glm::vec4(0, 0, 0, 1)));
-    vertices.push_back(VertexFormat(glm::vec3( 1.0, -1.0, -1.0), glm::vec4(1, 0, 0, 1)));
-    vertices.push_back(VertexFormat(glm::vec3( 1.0, -1.0, 1.0), glm::vec4(1, 0, 1, 1)));
+    //bottom -- blue
+    vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0), glm::vec4(0, 0, 1, 1)));
+    vertices.push_back(VertexFormat(glm::vec3( 1.0, -1.0, -1.0), glm::vec4(0, 0, 1, 1)));
+    vertices.push_back(VertexFormat(glm::vec3( 1.0, -1.0, 1.0), glm::vec4(0, 0, 1, 1)));
     vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec4(0, 0, 1, 1)));
 
     glGenBuffers(1, &vbo);
@@ -89,11 +89,21 @@ void CubeIndex::Create()
     this->vbos.push_back(vbo);
     this->vbos.push_back(ibo);
 
-    rotation_speed = glm::vec3(10.0, 10.0, 10.0);
+    rotation_speed = glm::vec3(5.0, 5.0, 5.0);
     rotation = glm::vec3(0.0, 0.0, 0.0);
-    translate_speed = glm::vec3(0.5, 0.0, 0.0);
-    translate = glm::vec3(-10.0, 0.0, 0.0);
-    translate_matrix = glm::translate(glm::mat4(1.0f), translate);
+
+    translate_speed = glm::vec3(0.1, 0.0, 0.0);
+    translate = glm::vec3(0.0, 0.0, 0.0);
+}
+
+void CubeIndex::GoToLeft()
+{
+
+}
+
+void CubeIndex::GoToRight()
+{
+  
 }
 
 void CubeIndex::Update()
@@ -101,12 +111,14 @@ void CubeIndex::Update()
     rotation = 0.01f * rotation_speed + rotation;
     rotation_sin = glm::vec3(rotation.x * PI / 180, rotation.y * PI / 180, rotation.z * PI / 180);
 
-    if(translate.x < 10)
-      translate = 0.01f * translate_speed + translate;
-    else
-      translate = glm::vec3(-10.0, 0.0, 0.0);
-
+    translate = 0.01f * translate_speed + translate;
     translate_matrix = glm::translate(glm::mat4(1.0f), translate);
+}
+
+void CubeIndex::Move()
+{
+  if(translate.x > 10)
+    translate = glm::vec3(-10.0, 0.0, 0.0);
 }
 
 void CubeIndex::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)

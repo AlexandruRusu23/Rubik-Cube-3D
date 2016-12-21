@@ -14,6 +14,9 @@ namespace BasicEngine
       Scene_Manager();
       ~Scene_Manager();
 
+      virtual void NotifyKeyboardPressed(unsigned char key, int x, int y);
+      virtual void NotifySpecialKeyboardPressed(int key, int x, int y);
+
       virtual void NotifyBeginFrame();
       virtual void NotifyDisplayFrame();
       virtual void NotifyEndFrame();

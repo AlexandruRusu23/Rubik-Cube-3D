@@ -92,23 +92,14 @@ void Core::Init::Init_GLUT::ReshapeCallback(int width, int height)
 
 void Core::Init::Init_GLUT::KeyboardCallback(unsigned char key, int x, int y)
 {
-	if(key == 27)
-		CloseCallback();
+	if(listener)
+		listener->NotifyKeyboardPressed(key, x, y);
 }
 
 void Core::Init::Init_GLUT::SpecialKeyboardCallback(int key, int x, int y)
 {
-	switch (key)
-  {
-		case GLUT_KEY_LEFT :
-			break;
-		case GLUT_KEY_RIGHT :
-      break;
-		case GLUT_KEY_UP :
-      break;
-		case GLUT_KEY_DOWN :
-      break;
-	}
+	if(listener)
+		listener->NotifySpecialKeyboardPressed(key, x, y);
 }
 
 void Core::Init::Init_GLUT::CloseCallback()

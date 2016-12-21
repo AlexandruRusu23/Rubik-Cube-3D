@@ -10,6 +10,10 @@ namespace BasicEngine
     public:
       virtual ~IListener() = 0;
 
+      //keyboard and mouse functions
+      virtual void NotifyKeyboardPressed(unsigned char key, int x, int y) = 0;
+      virtual void NotifySpecialKeyboardPressed(int key, int x, int y) = 0;
+
       //drawing functions
       virtual void NotifyBeginFrame() = 0;
       virtual void NotifyDisplayFrame() = 0;

@@ -109,6 +109,11 @@ void CubeTexture::Update()
     translate_matrix = glm::translate(glm::mat4(1.0f), translate);
 }
 
+void CubeTexture::Move()
+{
+  
+}
+
 void CubeTexture::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
     glUseProgram(program);
@@ -121,7 +126,6 @@ void CubeTexture::Draw(const glm::mat4& projection_matrix, const glm::mat4& view
 
     glUniform3f(glGetUniformLocation(program, "rotation"), rotation_sin.x, rotation_sin.y, rotation_sin.z);
     glUniformMatrix4fv(glGetUniformLocation(program, "translate_matrix"), 1, GL_FALSE, &translate_matrix[0][0]);
-
     glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, GL_FALSE, &view_matrix[0][0]);
     glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, GL_FALSE, &projection_matrix[0][0]);
 

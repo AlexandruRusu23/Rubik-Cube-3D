@@ -3,7 +3,7 @@ PROJECT = Scene3D.out
 # Compiler
 CC = g++
 
-# Run Options       
+# Run Options
 COMMANDLINE_OPTIONS = /dev/ttyS0
 
 # Compiler options during compilation
@@ -12,7 +12,7 @@ COMPILE_OPTIONS = -g0 -march=native -mtune=native -funroll-loops -Ofast -fno-mat
 #Header include directories
 HEADERS = -Iinclude -I/usr/local/include
 #Libraries for linking
-LIBS = -lGL -lGLU -lglut -lGLEW
+LIBS = -lGL -lGLU -lglut -lGLEW -lSOIL
 
 # Dependency options
 DEPENDENCY_OPTIONS = -MM -std=c++11 $(HEADERS)
@@ -64,4 +64,3 @@ clean:
 .PHONY: depclean
 depclean:
 	rm -f $(DEPENDENCIES)
-

@@ -53,6 +53,14 @@ void Models_Manager::Draw(const glm::mat4& projection_matrix, const glm::mat4& v
 	}
 }
 
+void Models_Manager::Move()
+{
+  for(auto model : gameModelList)
+  {
+    model.second->Move();
+  }
+}
+
 void Models_Manager::SetModel(const std::string& gameObjectName, IGameObject* gameObject)
 {
 	gameModelList[gameObjectName.c_str()] = gameObject;
