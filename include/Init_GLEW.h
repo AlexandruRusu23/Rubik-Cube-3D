@@ -5,15 +5,18 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 
-namespace Core
+namespace BasicEngine
 {
-	namespace Init
+	namespace Core
 	{
-		class Init_GLEW
+		namespace Init
 		{
-		public:
-			static void Init();
-		};
+			class Init_GLEW
+			{
+			public:
+				static void Init();
+			};
+		}
 	}
 }
 

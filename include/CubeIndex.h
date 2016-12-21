@@ -5,28 +5,24 @@
 #include <time.h>
 #include <stdarg.h>
 
-namespace Rendering
+using namespace BasicEngine::Rendering::Models;
+
+class CubeIndex : public Model
 {
-  namespace Models
-  {
-    class CubeIndex : public Model
-    {
-    public:
-      CubeIndex();
-      ~CubeIndex();
+public:
+  CubeIndex();
+  ~CubeIndex();
 
-      void Create();
-      virtual void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override final;
+  void Create();
+  virtual void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override final;
 
-      virtual void Update() override final;
+  virtual void Update() override final;
 
-    private:
-      glm::vec3 rotation, rotation_speed;
-      glm::vec3 translate;
-      glm::mat4 translate_matrix;
-      time_t timer;
-    };
-  }
-}
+private:
+  glm::vec3 rotation, rotation_speed;
+  glm::vec3 translate, translate_speed;
+  glm::mat4 translate_matrix;
+  time_t timer;
+};
 
 #endif

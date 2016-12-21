@@ -3,6 +3,7 @@
 #include <fstream>
 #include <vector>
 
+using namespace BasicEngine;
 using namespace Managers;
 
 // static std::map from Shader_Manager class;

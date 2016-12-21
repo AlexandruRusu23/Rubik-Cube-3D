@@ -1,14 +1,11 @@
 #include "Models_Manager.h"
-
+using namespace BasicEngine;
 using namespace Managers;
 using namespace Rendering;
 
 Models_Manager::Models_Manager()
 {
-  Models::CubeIndex* cubeIndex = new Models::CubeIndex();
-  cubeIndex->SetProgram(Shader_Manager::GetShader("colorShader"));
-  cubeIndex->Create();
-  gameModelList["cubeIndex"] = cubeIndex;
+
 }
 
 Models_Manager::~Models_Manager()
@@ -54,4 +51,9 @@ void Models_Manager::Draw(const glm::mat4& projection_matrix, const glm::mat4& v
 	{
 		model.second->Draw(projection_matrix, view_matrix);
 	}
+}
+
+void Models_Manager::SetModel(const std::string& gameObjectName, IGameObject* gameObject)
+{
+	gameModelList[gameObjectName.c_str()] = gameObject;
 }

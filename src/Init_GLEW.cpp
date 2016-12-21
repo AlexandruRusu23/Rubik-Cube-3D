@@ -1,4 +1,5 @@
 #include "Init_GLEW.h"
+using namespace BasicEngine;
 using namespace Core;
 using namespace Core::Init;
 

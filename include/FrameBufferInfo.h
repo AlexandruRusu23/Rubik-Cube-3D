@@ -4,46 +4,49 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 
-namespace Core
+namespace BasicEngine
 {
-	struct FrameBufferInfo
+	namespace Core
 	{
-		unsigned int flags;
-		bool msaa; // GLUT_MULTISAMPLE
-
-		FrameBufferInfo()
+		struct FrameBufferInfo
 		{
-			flags = GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH;
-			msaa = false;
-		}
+			unsigned int flags;
+			bool msaa; // GLUT_MULTISAMPLE
 
-		FrameBufferInfo(bool color, bool depth, bool stencil, bool msaa)
-		{
-			flags = GLUT_DOUBLE;
-			if(color)
+			FrameBufferInfo()
+			{
+				flags = GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH;
+				msaa = false;
+			}
+
+			FrameBufferInfo(bool color, bool depth, bool stencil, bool msaa)
+			{
+				flags = GLUT_DOUBLE;
+				if(color)
 				flags |= GLUT_RGBA | GLUT_ALPHA;
-			if(depth)
+				if(depth)
 				flags |= GLUT_DEPTH;
-			if(stencil)
+				if(stencil)
 				flags |= GLUT_STENCIL;
-			if(msaa)
+				if(msaa)
 				flags |= GLUT_MULTISAMPLE;
-			this->msaa = msaa;
-		}
+				this->msaa = msaa;
+			}
 
-		FrameBufferInfo(const FrameBufferInfo& frameBufferInfo)
-		{
-			flags = frameBufferInfo.flags;
-			msaa = frameBufferInfo.msaa;
-		}
+			FrameBufferInfo(const FrameBufferInfo& frameBufferInfo)
+			{
+				flags = frameBufferInfo.flags;
+				msaa = frameBufferInfo.msaa;
+			}
 
-		void operator=(const FrameBufferInfo& frameBufferInfo)
-		{
-			flags = frameBufferInfo.flags;
-			msaa = frameBufferInfo.flags;
-		}
+			void operator=(const FrameBufferInfo& frameBufferInfo)
+			{
+				flags = frameBufferInfo.flags;
+				msaa = frameBufferInfo.flags;
+			}
 
-	};
+		};
+	}
 }
 
 #endif

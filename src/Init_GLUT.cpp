@@ -1,5 +1,7 @@
 #include "Init_GLUT.h"
 
+using namespace BasicEngine;
+
 Core::IListener* Core::Init::Init_GLUT::listener = NULL;
 Core::WindowInfo Core::Init::Init_GLUT::windowInformation;
 
@@ -34,6 +36,8 @@ void Core::Init::Init_GLUT::Init(const Core::WindowInfo& windowInfo, const Core:
 	glutCloseFunc(CloseCallback);
 	glutDisplayFunc(DisplayCallback);
 	glutReshapeFunc(ReshapeCallback);
+	glutKeyboardFunc(KeyboardCallback);
+	glutSpecialFunc(SpecialKeyboardCallback);
 
 	Init::Init_GLEW::Init();
 
@@ -86,6 +90,27 @@ void Core::Init::Init_GLUT::ReshapeCallback(int width, int height)
 	}
 }
 
+void Core::Init::Init_GLUT::KeyboardCallback(unsigned char key, int x, int y)
+{
+	if(key == 27)
+		CloseCallback();
+}
+
+void Core::Init::Init_GLUT::SpecialKeyboardCallback(int key, int x, int y)
+{
+	switch (key)
+  {
+		case GLUT_KEY_LEFT :
+			break;
+		case GLUT_KEY_RIGHT :
+      break;
+		case GLUT_KEY_UP :
+      break;
+		case GLUT_KEY_DOWN :
+      break;
+	}
+}
+
 void Core::Init::Init_GLUT::CloseCallback()
 {
 	Close();
@@ -101,7 +126,7 @@ void Core::Init::Init_GLUT::ExitFullscreen()
 	glutLeaveFullScreen();
 }
 
-void Core::Init::Init_GLUT::SetListener(Core::IListener*& iListener)
+void Core::Init::Init_GLUT::SetListener(Core::IListener* iListener)
 {
 	listener = iListener;
 }

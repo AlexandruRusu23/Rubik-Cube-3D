@@ -1,22 +1,26 @@
 #ifndef ILISTENER_H
 #define ILISTENER_H
-namespace Core
+
+namespace BasicEngine
 {
-  class IListener
+  namespace Core
   {
-  public:
-    virtual ~IListener() = 0;
+    class IListener
+    {
+    public:
+      virtual ~IListener() = 0;
 
-    //drawing functions
-    virtual void NotifyBeginFrame() = 0;
-    virtual void NotifyDisplayFrame() = 0;
-    virtual void NotifyEndFrame() = 0;
-    virtual void NotifyReshape(int width, int height, int previous_width, int previous_height) = 0;
-  };
+      //drawing functions
+      virtual void NotifyBeginFrame() = 0;
+      virtual void NotifyDisplayFrame() = 0;
+      virtual void NotifyEndFrame() = 0;
+      virtual void NotifyReshape(int width, int height, int previous_width, int previous_height) = 0;
+    };
 
-  inline IListener::~IListener()
-  {
+    inline IListener::~IListener()
+    {
 
+    }
   }
 }
 

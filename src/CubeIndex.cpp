@@ -1,6 +1,6 @@
 #include "CubeIndex.h"
+using namespace BasicEngine;
 using namespace Rendering;
-using namespace Models;
 
 #define PI 3.14159265
 
@@ -91,20 +91,25 @@ void CubeIndex::Create()
 
     rotation_speed = glm::vec3(10.0, 10.0, 10.0);
     rotation = glm::vec3(0.0, 0.0, 0.0);
-    translate = glm::vec3(0.0, 0.0, 0.0);
+    translate_speed = glm::vec3(0.5, 0.0, 0.0);
+    translate = glm::vec3(-10.0, 0.0, 0.0);
     translate_matrix = glm::translate(glm::mat4(1.0f), translate);
 }
 
 void CubeIndex::Update()
 {
+    rotation = 0.01f * rotation_speed + rotation;
 
+    if(translate.x < 10)
+      translate = 0.01f * translate_speed + translate;
+    else
+      translate = glm::vec3(-10.0, 0.0, 0.0);
 }
 
 void CubeIndex::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
-    rotation = 0.01f * rotation_speed + rotation;
-
     glm::vec3 rotation_sin = glm::vec3(rotation.x * PI / 180, rotation.y * PI / 180, rotation.z * PI / 180);
+    translate_matrix = glm::translate(glm::mat4(1.0f), translate);
 
     glUseProgram(program);
     glUniform3f(glGetUniformLocation(program, "rotation"), rotation_sin.x, rotation_sin.y, rotation_sin.z);
