@@ -27,7 +27,7 @@ void Model::Update()
 
 void Model::Move()
 {
-  
+
 }
 
 void Model::SetProgram(GLuint program)
@@ -43,18 +43,6 @@ GLuint Model::GetVao() const
 const std::vector<GLuint>& Model::GetVbos() const
 {
   return vbos;
-}
-
-const GLuint Model::GetTexture(std::string textureName) const
-{
-	return textures.at(textureName);
-}
-
-
-void Model::SetTexture(std::string textureName, GLuint texture)
-{
-	if (texture == 0) return;
-	textures[textureName] = texture;
 }
 
 void Model::Destroy()

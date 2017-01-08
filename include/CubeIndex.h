@@ -19,10 +19,6 @@ public:
   virtual void Move() override final;
 
 private:
-  void GoToLeft();
-  void GoToRight();
-
-private:
   glm::vec3 rotation, rotation_speed;
   glm::vec3 rotation_sin;
   glm::vec3 translate, translate_speed;

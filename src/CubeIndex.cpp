@@ -92,18 +92,8 @@ void CubeIndex::Create()
     rotation_speed = glm::vec3(5.0, 5.0, 5.0);
     rotation = glm::vec3(0.0, 0.0, 0.0);
 
-    translate_speed = glm::vec3(0.1, 0.0, 0.0);
+    translate_speed = glm::vec3(0.0, 0.0, 0.0);
     translate = glm::vec3(0.0, 0.0, 0.0);
-}
-
-void CubeIndex::GoToLeft()
-{
-
-}
-
-void CubeIndex::GoToRight()
-{
-  
 }
 
 void CubeIndex::Update()

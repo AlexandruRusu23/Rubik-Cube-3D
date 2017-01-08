@@ -27,9 +27,6 @@ namespace BasicEngine
         virtual GLuint GetVao() const override;
         virtual const std::vector<GLuint>& GetVbos() const override;
 
-        virtual const GLuint GetTexture(std::string textureName) const override;
-				virtual void SetTexture(std::string textureName, GLuint texture) override;
-
       protected:
         GLuint vao;
         GLuint program;

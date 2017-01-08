@@ -5,7 +5,6 @@ using namespace Managers;
 Scene_Manager::Scene_Manager()
 {
   glEnable(GL_DEPTH_TEST);
-  //glEnable(GL_CULL_FACE);
 
   view_matrix = glm::mat4(1.0f, 0.0f, 0.0f, 0.0f,
                           0.0f, 1.0f, 0.0f, 0.0f,
@@ -20,8 +19,12 @@ Scene_Manager::~Scene_Manager()
 
 void Scene_Manager::NotifyKeyboardPressed(unsigned char key, int x, int y)
 {
-  if(key == 27)
-    exit(0);
+  switch (key)
+  {
+    case 27:
+      exit(0);
+    break;
+  }
 }
 
 void Scene_Manager::NotifySpecialKeyboardPressed(int key, int x, int y)

@@ -5,7 +5,6 @@
 #include <map>
 #include "Shader_Manager.h"
 #include "IGameObject.h"
-#include "CubeIndex.h"
 
 namespace BasicEngine
 {
