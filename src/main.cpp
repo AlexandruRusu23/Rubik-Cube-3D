@@ -11,16 +11,21 @@ int main(int argc, char **argv)
 	engine->GetShader_Manager()->CreateProgram("cubeShader", "Vertex_Shader.glsl", "Fragment_Shader.glsl");
 
 	std::vector<CubeIndex*> cubes;
-	CubeIndex* cube = new CubeIndex();
-	cubes.push_back(cube);
+	for(int i = 1; i<= 27; i++)
+	{
+		CubeIndex* cube = new CubeIndex(i);
+		cubes.push_back(cube);
+	}
 
+	int contor = 1;
 	for(std::vector<CubeIndex*>::iterator it = cubes.begin(); it != cubes.end(); it++)
 	{
 		(*it)->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
 		(*it)->Create();
-		// (*it)->Create(int pozitionId); // TO IMPLEMENT
-		engine->GetModels_Manager()->SetModel("cubeIndex", (*it));
+		engine->GetModels_Manager()->SetModel("cubeIndex" + std::to_string(contor), (*it));
+		contor++;
 	}
+
 	engine->Run();
 
 	delete engine;

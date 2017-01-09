@@ -16,6 +16,7 @@
 #include "glm/gtc/type_ptr.hpp"
 
 #include "VertexFormat.h"
+#include "Models_Format.h"
 
 namespace BasicEngine
 {

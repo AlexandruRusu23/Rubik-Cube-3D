@@ -11,6 +11,7 @@ class CubeIndex : public Model
 {
 public:
   CubeIndex();
+  CubeIndex(int positionId);
   ~CubeIndex();
 
   void Create();

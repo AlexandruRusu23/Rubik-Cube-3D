@@ -6,7 +6,108 @@ using namespace Rendering;
 
 CubeIndex::CubeIndex()
 {
+  rotation_speed = glm::vec3(5.0, 5.0, 5.0);
+  rotation = glm::vec3(0.0, 0.0, 0.0);
 
+  translate_speed = glm::vec3(0.0, 0.0, 0.0);
+  translate = glm::vec3(0.0, 0.0, 0.0);
+}
+
+CubeIndex::CubeIndex(int positionId)
+{
+  rotation_speed = glm::vec3(20.0, 20.0, 20.0);
+  rotation = glm::vec3(0.0, 0.0, 0.0);
+
+  translate_speed = glm::vec3(0.0, 0.0, 0.0);
+  switch (positionId)
+  {
+      // front layer
+      case UP_LEFT_FRONT:
+          translate = glm::vec3(-2.0, 2.0, 2.0);
+      break;
+      case UP_MIDDLE_FRONT:
+          translate = glm::vec3(0.0, 2.0, 2.0);
+      break;
+      case UP_RIGHT_FRONT:
+          translate = glm::vec3(2.0, 2.0, 2.0);
+      break;
+      case MIDDLE_LEFT_FRONT:
+          translate = glm::vec3(-2.0, 0.0, 2.0);
+      break;
+      case MIDDLE_MIDDLE_FRONT:
+          translate = glm::vec3(0.0, 0.0, 2.0);
+      break;
+      case MIDDLE_RIGHT_FRONT:
+          translate = glm::vec3(2.0, 0.0, 2.0);
+      break;
+      case DOWN_LEFT_FRONT:
+          translate = glm::vec3(-2.0, -2.0, 2.0);
+      break;
+      case DOWN_MIDDLE_FRONT:
+          translate = glm::vec3(0.0, -2.0, 2.0);
+      break;
+      case DOWN_RIGHT_FRONT:
+          translate = glm::vec3(2.0, -2.0, 2.0);
+      break;
+
+      // middle layer
+      case UP_LEFT_MIDDLE:
+          translate = glm::vec3(-2.0, 2.0, 0.0);
+      break;
+      case UP_MIDDLE_MIDDLE:
+          translate = glm::vec3(0.0, 2.0, 0.0);
+      break;
+      case UP_RIGHT_MIDDLE:
+          translate = glm::vec3(2.0, 2.0, 0.0);
+      break;
+      case MIDDLE_LEFT_MIDDLE:
+          translate = glm::vec3(-2.0, 0.0, 0.0);
+      break;
+      case MIDDLE_MIDDLE_MIDDLE:
+          translate = glm::vec3(0.0, 0.0, 0.0);
+      break;
+      case MIDDLE_RIGHT_MIDDLE:
+          translate = glm::vec3(2.0, 0.0, 0.0);
+      break;
+      case DOWN_LEFT_MIDDLE:
+          translate = glm::vec3(-2.0, -2.0, 0.0);
+      break;
+      case DOWN_MIDDLE_MIDDLE:
+          translate = glm::vec3(0.0, -2.0, 0.0);
+      break;
+      case DOWN_RIGHT_MIDDLE:
+          translate = glm::vec3(2.0, -2.0, 0.0);
+      break;
+
+      // rear layer
+      case UP_LEFT_REAR:
+          translate = glm::vec3(-2.0, 2.0, -2.0);
+      break;
+      case UP_MIDDLE_REAR:
+          translate = glm::vec3(0.0, 2.0, -2.0);
+      break;
+      case UP_RIGHT_REAR:
+          translate = glm::vec3(2.0, 2.0, -2.0);
+      break;
+      case MIDDLE_LEFT_REAR:
+          translate = glm::vec3(-2.0, 0.0, -2.0);
+      break;
+      case MIDDLE_MIDDLE_REAR:
+          translate = glm::vec3(0.0, 0.0, -2.0);
+      break;
+      case MIDDLE_RIGHT_REAR:
+          translate = glm::vec3(2.0, 0.0, -2.0);
+      break;
+      case DOWN_LEFT_REAR:
+          translate = glm::vec3(-2.0, -2.0, -2.0);
+      break;
+      case DOWN_MIDDLE_REAR:
+          translate = glm::vec3(0.0, -2.0, -2.0);
+      break;
+      case DOWN_RIGHT_REAR:
+          translate = glm::vec3(2.0, -2.0, -2.0);
+      break;
+  }
 }
 
 CubeIndex::~CubeIndex()
@@ -88,12 +189,6 @@ void CubeIndex::Create()
     this->vao = vao;
     this->vbos.push_back(vbo);
     this->vbos.push_back(ibo);
-
-    rotation_speed = glm::vec3(5.0, 5.0, 5.0);
-    rotation = glm::vec3(0.0, 0.0, 0.0);
-
-    translate_speed = glm::vec3(0.0, 0.0, 0.0);
-    translate = glm::vec3(0.0, 0.0, 0.0);
 }
 
 void CubeIndex::Update()
@@ -107,8 +202,7 @@ void CubeIndex::Update()
 
 void CubeIndex::Move()
 {
-  if(translate.x > 10)
-    translate = glm::vec3(-10.0, 0.0, 0.0);
+  
 }
 
 void CubeIndex::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
