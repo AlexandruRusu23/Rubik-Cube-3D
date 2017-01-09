@@ -25,7 +25,7 @@ void Model::Update()
 
 }
 
-void Model::Move()
+void Model::Move(int areaId, int directionId)
 {
 
 }

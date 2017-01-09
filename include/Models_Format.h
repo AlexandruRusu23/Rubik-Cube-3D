@@ -1,5 +1,8 @@
 // DEFINE Y_X_Z NUMBER
 
+// no state
+#define NONE 0
+
 // front layer
 #define UP_LEFT_FRONT 1
 #define UP_MIDDLE_FRONT 2
@@ -32,3 +35,14 @@
 #define DOWN_LEFT_REAR 25
 #define DOWN_MIDDLE_REAR 26
 #define DOWN_RIGHT_REAR 27
+
+// areas for moving
+#define UP_LEFT 51
+#define UP_MIDDLE 52
+#define UP_RIGHT 53
+#define MIDDLE_LEFT 54
+#define MIDDLE_MIDDLE 55
+#define MIDDLE_RIGHT 56
+#define DOWN_LEFT 57
+#define DOWN_MIDDLE 58
+#define DOWN_RIGHT 59

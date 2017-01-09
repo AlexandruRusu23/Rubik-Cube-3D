@@ -6,7 +6,12 @@ using namespace Rendering;
 
 CubeIndex::CubeIndex()
 {
-  rotation_speed = glm::vec3(5.0, 5.0, 5.0);
+  isMoving = false;
+  cube_position = NONE;
+  rotation_direction = 1;
+  translate_direction = 1;
+
+  rotation_speed = glm::vec3(0.0, 0.0, 0.0);
   rotation = glm::vec3(0.0, 0.0, 0.0);
 
   translate_speed = glm::vec3(0.0, 0.0, 0.0);
@@ -15,7 +20,13 @@ CubeIndex::CubeIndex()
 
 CubeIndex::CubeIndex(int positionId)
 {
-  rotation_speed = glm::vec3(20.0, 20.0, 20.0);
+  isMoving = false;
+  cube_position = positionId;
+
+  rotation_direction = 1;
+  translate_direction = 1;
+
+  rotation_speed = glm::vec3(0.0, 0.0, 0.0);
   rotation = glm::vec3(0.0, 0.0, 0.0);
 
   translate_speed = glm::vec3(0.0, 0.0, 0.0);
@@ -193,16 +204,75 @@ void CubeIndex::Create()
 
 void CubeIndex::Update()
 {
-    rotation = 0.01f * rotation_speed + rotation;
+    rotation = rotation_direction * 0.01f * rotation_speed + rotation;
     rotation_sin = glm::vec3(rotation.x * PI / 180, rotation.y * PI / 180, rotation.z * PI / 180);
 
-    translate = 0.01f * translate_speed + translate;
+    translate = translate_direction * 0.01f * translate_speed + translate;
     translate_matrix = glm::translate(glm::mat4(1.0f), translate);
+
+    if(abs(rotation.x) % 90 <= 90 && abs(rotation.x) % 90 >= 89)
+    {
+      rotation_speed.x = 0;
+      isMoving = false;
+    }
+
+    if(abs(rotation.y) % 90 <= 90 && abs(rotation.y) % 90 >= 89)
+    {
+      rotation_speed.y = 0;
+      isMoving = false;
+    }
 }
 
-void CubeIndex::Move()
+void CubeIndex::Move(int areaId, int directionId)
 {
-  
+    if (areaId == NONE || directionId == NONE)
+        return;
+
+    if (isMoving)
+        return;
+
+    isMoving = true;
+
+    if(!PartOfTheLayer(areaId, directionId))
+    {
+        areaId = NONE;
+        directionId = NONE;
+    }
+    else
+    {
+        switch (directionId) {
+          case GLUT_KEY_UP:
+              rotation_speed = glm::vec3(5.0, 0.0, 0.0);
+              rotation_direction = -1;
+              areaId = NONE;
+              directionId = NONE;
+          break;
+          case GLUT_KEY_DOWN:
+              rotation_speed = glm::vec3(5.0, 0.0, 0.0);
+              rotation_direction = 1;
+              areaId = NONE;
+              directionId = NONE;
+          break;
+          case GLUT_KEY_LEFT:
+              rotation_speed = glm::vec3(0.0, 5.0, 0.0);
+              rotation_direction = -1;
+              areaId = NONE;
+              directionId = NONE;
+          break;
+          case GLUT_KEY_RIGHT:
+              rotation_speed = glm::vec3(0.0, 5.0, 0.0);
+              rotation_direction = 1;
+              areaId = NONE;
+              directionId = NONE;
+          break;
+          default:
+              rotation_speed = glm::vec3(0.0, 0.0, 0.0);
+              rotation_direction = 1;
+              areaId = NONE;
+              directionId = NONE;
+          break;
+        }
+    }
 }
 
 void CubeIndex::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
@@ -217,4 +287,59 @@ void CubeIndex::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_m
     glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, GL_FALSE, &projection_matrix[0][0]);
 
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+}
+
+bool CubeIndex::PartOfTheLayer(int areaId, int directionId)
+{
+    areaId = areaId % 50;
+    if (directionId == GLUT_KEY_UP || directionId == GLUT_KEY_DOWN)
+    {
+        int aux = areaId;
+        while (aux <= 27)
+        {
+            if(aux == cube_position)
+              return true;
+            aux += 3;
+        }
+        aux = areaId;
+        while (aux > 0)
+        {
+            if(aux == cube_position)
+              return true;
+            aux -= 3;
+        }
+    }
+
+    if (directionId == GLUT_KEY_LEFT || directionId == GLUT_KEY_RIGHT)
+    {
+        if(areaId > 0 && areaId < 4)
+        {
+            if(cube_position == 1 || cube_position == 2 || cube_position == 3 )
+              return true;
+            if(cube_position == 10 || cube_position == 11 || cube_position == 12 )
+              return true;
+            if(cube_position == 19 || cube_position == 20 || cube_position == 21 )
+              return true;
+        }
+        if(areaId >= 4 && areaId < 7)
+        {
+            if(cube_position == 4 || cube_position == 5 || cube_position == 6 )
+              return true;
+            if(cube_position == 13 || cube_position == 14 || cube_position == 15 )
+              return true;
+            if(cube_position == 22 || cube_position == 23 || cube_position == 24 )
+              return true;
+        }
+        if(areaId >= 7 && areaId <10)
+        {
+            if(cube_position == 7 || cube_position == 8 || cube_position == 9 )
+              return true;
+            if(cube_position == 16 || cube_position == 17 || cube_position == 18 )
+              return true;
+            if(cube_position == 25 || cube_position == 26 || cube_position == 27 )
+              return true;
+        }
+    }
+
+    return false;
 }

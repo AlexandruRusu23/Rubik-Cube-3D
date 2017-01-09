@@ -30,13 +30,15 @@ namespace BasicEngine
       virtual void Draw() = 0;
       virtual void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) = 0;
       virtual void Update() = 0;
-      virtual void Move() = 0;
+      virtual void Move(int areaId, int directionId) = 0;
       virtual void SetProgram(GLuint shaderName) = 0;
       virtual void Destroy() = 0;
 
       virtual GLuint GetVao() const = 0;
       virtual const std::vector<GLuint>& GetVbos() const = 0;
 
+    public:
+      bool isMoving;
     };
 
     inline IGameObject::~IGameObject()

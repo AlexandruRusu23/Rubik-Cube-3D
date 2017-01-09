@@ -53,11 +53,11 @@ void Models_Manager::Draw(const glm::mat4& projection_matrix, const glm::mat4& v
 	}
 }
 
-void Models_Manager::Move()
+void Models_Manager::Move(int areaId, int directionId)
 {
   for(auto model : gameModelList)
   {
-    model.second->Move();
+    model.second->Move(areaId, directionId);
   }
 }
 

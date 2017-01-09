@@ -21,7 +21,7 @@ namespace BasicEngine
       void Draw();
       void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix);
       void Update();
-      void Move();
+      void Move(int areaId, int directionId);
 
       void DeleteModel(const std::string& gameModelName);
       const IGameObject& GetModel(const std::string& gameModelName) const;
