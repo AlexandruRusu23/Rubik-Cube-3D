@@ -27,6 +27,7 @@ private:
   glm::vec3 rotation_sin;
   glm::vec3 translate, translate_speed;
   glm::mat4 translate_matrix;
+  glm::vec3 next_rotation;
   int cube_position;
   int rotation_direction;
   int translate_direction;

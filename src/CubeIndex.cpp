@@ -16,6 +16,8 @@ CubeIndex::CubeIndex()
 
   translate_speed = glm::vec3(0.0, 0.0, 0.0);
   translate = glm::vec3(0.0, 0.0, 0.0);
+
+  next_rotation = rotation;
 }
 
 CubeIndex::CubeIndex(int positionId)
@@ -30,6 +32,9 @@ CubeIndex::CubeIndex(int positionId)
   rotation = glm::vec3(0.0, 0.0, 0.0);
 
   translate_speed = glm::vec3(0.0, 0.0, 0.0);
+
+  next_rotation = rotation;
+
   switch (positionId)
   {
       // front layer
@@ -204,21 +209,23 @@ void CubeIndex::Create()
 
 void CubeIndex::Update()
 {
-    rotation = rotation_direction * 0.01f * rotation_speed + rotation;
+    rotation = rotation_direction * 0.1f * rotation_speed + rotation;
     rotation_sin = glm::vec3(rotation.x * PI / 180, rotation.y * PI / 180, rotation.z * PI / 180);
 
     translate = translate_direction * 0.01f * translate_speed + translate;
     translate_matrix = glm::translate(glm::mat4(1.0f), translate);
 
-    if(abs(rotation.x) % 90 <= 90 && abs(rotation.x) % 90 >= 89)
+    if(abs(rotation.x - next_rotation.x) > 0 && abs(rotation.x - next_rotation.x) <= 5)
     {
       rotation_speed.x = 0;
+      rotation = next_rotation;
       isMoving = false;
     }
 
-    if(abs(rotation.y) % 90 <= 90 && abs(rotation.y) % 90 >= 89)
+    if(abs(rotation.y - next_rotation.y) > 0 && abs(rotation.y - next_rotation.y) <= 5)
     {
       rotation_speed.y = 0;
+      rotation = next_rotation;
       isMoving = false;
     }
 }
@@ -244,24 +251,28 @@ void CubeIndex::Move(int areaId, int directionId)
           case GLUT_KEY_UP:
               rotation_speed = glm::vec3(5.0, 0.0, 0.0);
               rotation_direction = -1;
+              next_rotation.x -= 90;
               areaId = NONE;
               directionId = NONE;
           break;
           case GLUT_KEY_DOWN:
               rotation_speed = glm::vec3(5.0, 0.0, 0.0);
               rotation_direction = 1;
+              next_rotation.x += 90;
               areaId = NONE;
               directionId = NONE;
           break;
           case GLUT_KEY_LEFT:
               rotation_speed = glm::vec3(0.0, 5.0, 0.0);
               rotation_direction = -1;
+              next_rotation.y -= 90;
               areaId = NONE;
               directionId = NONE;
           break;
           case GLUT_KEY_RIGHT:
               rotation_speed = glm::vec3(0.0, 5.0, 0.0);
               rotation_direction = 1;
+              next_rotation.y += 90;
               areaId = NONE;
               directionId = NONE;
           break;
