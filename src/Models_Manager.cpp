@@ -61,6 +61,14 @@ void Models_Manager::Move(int areaId, int directionId)
   }
 }
 
+void Models_Manager::PrintDetails()
+{
+  for(auto model : gameModelList)
+  {
+    model.second->PrintDetails();
+  }
+}
+
 void Models_Manager::SetModel(const std::string& gameObjectName, IGameObject* gameObject)
 {
 	gameModelList[gameObjectName.c_str()] = gameObject;

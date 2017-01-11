@@ -29,6 +29,7 @@ namespace BasicEngine
 
       int areaId;
       int directionId;
+      bool printDetails;
 
       glm::mat4 projection_matrix;
       glm::mat4 view_matrix;

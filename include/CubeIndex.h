@@ -19,8 +19,14 @@ public:
   virtual void Update() override final;
   virtual void Move(int areaId, int directionId) override final;
 
+  virtual void PrintDetails() override final;
+
 private:
   bool PartOfTheLayer(int areaId, int directionId);
+  void ChangePositionIdIfNeeded();
+
+public:
+  bool isMoving;
 
 private:
   glm::vec3 rotation, rotation_speed;
@@ -28,6 +34,7 @@ private:
   glm::vec3 translate, translate_speed;
   glm::mat4 translate_matrix;
   glm::vec3 next_rotation;
+  glm::vec3 next_translate;
   int cube_position;
   int rotation_direction;
   int translate_direction;

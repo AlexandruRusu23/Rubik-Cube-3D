@@ -228,6 +228,11 @@ void CubeIndex::Update()
       rotation = next_rotation;
       isMoving = false;
     }
+
+    if(rotation == next_rotation)
+      isMoving = false;
+
+    ChangePositionIdIfNeeded();
 }
 
 void CubeIndex::Move(int areaId, int directionId)
@@ -237,8 +242,6 @@ void CubeIndex::Move(int areaId, int directionId)
 
     if (isMoving)
         return;
-
-    isMoving = true;
 
     if(!PartOfTheLayer(areaId, directionId))
     {
@@ -252,6 +255,7 @@ void CubeIndex::Move(int areaId, int directionId)
               rotation_speed = glm::vec3(5.0, 0.0, 0.0);
               rotation_direction = -1;
               next_rotation.x -= 90;
+              
               areaId = NONE;
               directionId = NONE;
           break;
@@ -284,6 +288,8 @@ void CubeIndex::Move(int areaId, int directionId)
           break;
         }
     }
+
+    isMoving = true;
 }
 
 void CubeIndex::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
@@ -353,4 +359,19 @@ bool CubeIndex::PartOfTheLayer(int areaId, int directionId)
     }
 
     return false;
+}
+
+void CubeIndex::ChangePositionIdIfNeeded()
+{
+
+}
+
+void CubeIndex::PrintDetails()
+{
+  printf("POZITIE: %d\n", cube_position);
+  printf("DIRECTIE ROTATIE: %d\n", rotation_direction);
+  printf("UNGHI X ROTATIE: %f\n", rotation.x);
+  printf("UNGHI Y ROTATIE: %f\n", rotation.y);
+  printf("MOVING: %d\n", isMoving);
+  printf("TRANSLATE X: %f\nTRANSLATE Y: %f\nTRANSLATE Z: %f\n\n\n", translate.x, translate.y, translate.z);
 }

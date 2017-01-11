@@ -34,10 +34,10 @@ void Core::Init::Init_GLUT::Init(const Core::WindowInfo& windowInfo, const Core:
 
 	glutIdleFunc(IdleCallback);
 	glutCloseFunc(CloseCallback);
-	glutDisplayFunc(DisplayCallback);
-	glutReshapeFunc(ReshapeCallback);
 	glutKeyboardFunc(KeyboardCallback);
 	glutSpecialFunc(SpecialKeyboardCallback);
+	glutDisplayFunc(DisplayCallback);
+	glutReshapeFunc(ReshapeCallback);
 
 	Init::Init_GLEW::Init();
 

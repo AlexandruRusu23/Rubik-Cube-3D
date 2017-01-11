@@ -23,6 +23,8 @@ namespace BasicEngine
       void Update();
       void Move(int areaId, int directionId);
 
+      void PrintDetails();
+
       void DeleteModel(const std::string& gameModelName);
       const IGameObject& GetModel(const std::string& gameModelName) const;
 

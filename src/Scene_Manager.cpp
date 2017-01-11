@@ -63,6 +63,10 @@ void Scene_Manager::NotifyKeyboardPressed(unsigned char key, int x, int y)
     case 'C':
       areaId = DOWN_RIGHT;
     break;
+    case 'p':
+    case 'P':
+      printDetails = true;
+    break;
     default:
       areaId = NONE;
     break;
@@ -95,6 +99,11 @@ void Scene_Manager::NotifyBeginFrame()
 {
   models_manager->Move(areaId, directionId);
   models_manager->Update();
+  if(printDetails)
+  {
+    models_manager->PrintDetails();
+    printDetails = false;
+  }
 }
 
 void Scene_Manager::NotifyDisplayFrame()

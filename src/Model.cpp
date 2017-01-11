@@ -30,6 +30,11 @@ void Model::Move(int areaId, int directionId)
 
 }
 
+void Model::PrintDetails()
+{
+  
+}
+
 void Model::SetProgram(GLuint program)
 {
   this->program = program;
