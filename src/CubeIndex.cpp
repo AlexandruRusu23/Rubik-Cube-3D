@@ -3,6 +3,10 @@ using namespace BasicEngine;
 using namespace Rendering;
 
 #define PI 3.14159265
+#define GO_UP 201
+#define GO_DOWN 202
+#define GO_LEFT 203
+#define GO_RIGHT 204
 
 CubeIndex::CubeIndex()
 {
@@ -18,6 +22,7 @@ CubeIndex::CubeIndex()
   translate = glm::vec3(0.0, 0.0, 0.0);
 
   next_rotation = rotation;
+  next_cube_position = cube_position;
 }
 
 CubeIndex::CubeIndex(int positionId)
@@ -29,12 +34,17 @@ CubeIndex::CubeIndex(int positionId)
   translate_direction = 1;
 
   rotation_speed = glm::vec3(0.0, 0.0, 0.0);
-  rotation = glm::vec3(0.0, 0.0, 0.0);
-
+  rotation = glm::vec3(0.0, 35.0, 0.0);
   translate_speed = glm::vec3(0.0, 0.0, 0.0);
 
   next_rotation = rotation;
 
+  ReInit(positionId);
+  next_cube_position = cube_position;
+}
+
+void CubeIndex::ReInit(int positionId)
+{
   switch (positionId)
   {
       // front layer
@@ -230,9 +240,14 @@ void CubeIndex::Update()
     }
 
     if(rotation == next_rotation)
+    {
       isMoving = false;
 
-    ChangePositionIdIfNeeded();
+      ReInit(next_cube_position);
+      cube_position = next_cube_position;
+      //rotation = glm::vec3(0.0, 35.0, 0.0);
+      //next_rotation = rotation;
+    }
 }
 
 void CubeIndex::Move(int areaId, int directionId)
@@ -255,7 +270,7 @@ void CubeIndex::Move(int areaId, int directionId)
               rotation_speed = glm::vec3(5.0, 0.0, 0.0);
               rotation_direction = -1;
               next_rotation.x -= 90;
-              
+              ChangePositionIdIfNeeded(GO_UP);
               areaId = NONE;
               directionId = NONE;
           break;
@@ -263,6 +278,7 @@ void CubeIndex::Move(int areaId, int directionId)
               rotation_speed = glm::vec3(5.0, 0.0, 0.0);
               rotation_direction = 1;
               next_rotation.x += 90;
+              ChangePositionIdIfNeeded(GO_DOWN);
               areaId = NONE;
               directionId = NONE;
           break;
@@ -270,6 +286,7 @@ void CubeIndex::Move(int areaId, int directionId)
               rotation_speed = glm::vec3(0.0, 5.0, 0.0);
               rotation_direction = -1;
               next_rotation.y -= 90;
+              ChangePositionIdIfNeeded(GO_LEFT);
               areaId = NONE;
               directionId = NONE;
           break;
@@ -277,6 +294,7 @@ void CubeIndex::Move(int areaId, int directionId)
               rotation_speed = glm::vec3(0.0, 5.0, 0.0);
               rotation_direction = 1;
               next_rotation.y += 90;
+              ChangePositionIdIfNeeded(GO_RIGHT);
               areaId = NONE;
               directionId = NONE;
           break;
@@ -287,6 +305,7 @@ void CubeIndex::Move(int areaId, int directionId)
               directionId = NONE;
           break;
         }
+        printf("%d %d\n", cube_position, next_cube_position);
     }
 
     isMoving = true;
@@ -361,9 +380,437 @@ bool CubeIndex::PartOfTheLayer(int areaId, int directionId)
     return false;
 }
 
-void CubeIndex::ChangePositionIdIfNeeded()
+void CubeIndex::ChangePositionIdIfNeeded(int directionOnMove)
 {
+  // directionOnMove has the way whole rubik rube is moved, not for every cube apart
+  switch (cube_position)
+  {
+      // front layer
+      case UP_LEFT_FRONT:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = UP_LEFT_REAR;
+            break;
+            case GO_DOWN:
+              next_cube_position = DOWN_LEFT_FRONT;
+            break;
+            case GO_LEFT:
+              next_cube_position = UP_LEFT_REAR;
+            break;
+            case GO_RIGHT:
+              next_cube_position = UP_RIGHT_FRONT;
+            break;
+          }
+      break;
+      case UP_MIDDLE_FRONT:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = UP_MIDDLE_REAR;
+            break;
+            case GO_DOWN:
+              next_cube_position = DOWN_MIDDLE_FRONT;
+            break;
+            case GO_LEFT:
+              next_cube_position = UP_LEFT_MIDDLE;
+            break;
+            case GO_RIGHT:
+              next_cube_position = UP_RIGHT_MIDDLE;
+            break;
+          }
+      break;
+      case UP_RIGHT_FRONT:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = UP_RIGHT_REAR;
+            break;
+            case GO_DOWN:
+              next_cube_position = DOWN_RIGHT_FRONT;
+            break;
+            case GO_LEFT:
+              next_cube_position = UP_LEFT_FRONT;
+            break;
+            case GO_RIGHT:
+              next_cube_position = UP_RIGHT_REAR;
+            break;
+          }
+      break;
+      case MIDDLE_LEFT_FRONT:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = UP_LEFT_MIDDLE;
+            break;
+            case GO_DOWN:
+              next_cube_position = DOWN_LEFT_MIDDLE;
+            break;
+            case GO_LEFT:
+              next_cube_position = MIDDLE_LEFT_REAR;
+            break;
+            case GO_RIGHT:
+              next_cube_position = MIDDLE_RIGHT_FRONT;
+            break;
+          }
+      break;
+      case MIDDLE_MIDDLE_FRONT:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = UP_MIDDLE_MIDDLE;
+            break;
+            case GO_DOWN:
+              next_cube_position = DOWN_MIDDLE_MIDDLE;
+            break;
+            case GO_LEFT:
+              next_cube_position = MIDDLE_LEFT_MIDDLE;
+            break;
+            case GO_RIGHT:
+              next_cube_position = MIDDLE_RIGHT_MIDDLE;
+            break;
+          }
+      break;
+      case MIDDLE_RIGHT_FRONT:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = UP_RIGHT_MIDDLE;
+            break;
+            case GO_DOWN:
+              next_cube_position = DOWN_RIGHT_MIDDLE;
+            break;
+            case GO_LEFT:
+              next_cube_position = MIDDLE_LEFT_FRONT;
+            break;
+            case GO_RIGHT:
+              next_cube_position = MIDDLE_RIGHT_REAR;
+            break;
+          }
+      break;
+      case DOWN_LEFT_FRONT:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = UP_LEFT_FRONT;
+            break;
+            case GO_DOWN:
+              next_cube_position = DOWN_LEFT_REAR;
+            break;
+            case GO_LEFT:
+              next_cube_position = DOWN_LEFT_REAR;
+            break;
+            case GO_RIGHT:
+              next_cube_position = DOWN_RIGHT_FRONT;
+            break;
+          }
+      break;
+      case DOWN_MIDDLE_FRONT:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = UP_MIDDLE_FRONT;
+            break;
+            case GO_DOWN:
+              next_cube_position = DOWN_MIDDLE_REAR;
+            break;
+            case GO_LEFT:
+              next_cube_position = DOWN_LEFT_MIDDLE;
+            break;
+            case GO_RIGHT:
+              next_cube_position = DOWN_RIGHT_MIDDLE;
+            break;
+          }
+      break;
+      case DOWN_RIGHT_FRONT:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = UP_RIGHT_FRONT;
+            break;
+            case GO_DOWN:
+              next_cube_position = DOWN_RIGHT_REAR;
+            break;
+            case GO_LEFT:
+              next_cube_position = DOWN_LEFT_FRONT;
+            break;
+            case GO_RIGHT:
+              next_cube_position = DOWN_RIGHT_REAR;
+            break;
+          }
+      break;
 
+      // middle layer
+      case UP_LEFT_MIDDLE:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = MIDDLE_LEFT_REAR;
+            break;
+            case GO_DOWN:
+              next_cube_position = MIDDLE_LEFT_FRONT;
+            break;
+            case GO_LEFT:
+              next_cube_position = UP_MIDDLE_REAR;
+            break;
+            case GO_RIGHT:
+              next_cube_position = UP_MIDDLE_FRONT;
+            break;
+          }
+      break;
+      case UP_MIDDLE_MIDDLE:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = MIDDLE_MIDDLE_REAR;
+            break;
+            case GO_DOWN:
+              next_cube_position = MIDDLE_MIDDLE_FRONT;
+            break;
+          }
+      break;
+      case UP_RIGHT_MIDDLE:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = MIDDLE_RIGHT_REAR;
+            break;
+            case GO_DOWN:
+              next_cube_position = MIDDLE_RIGHT_FRONT;
+            break;
+            case GO_LEFT:
+              next_cube_position = UP_MIDDLE_FRONT;
+            break;
+            case GO_RIGHT:
+              next_cube_position = UP_MIDDLE_REAR;
+            break;
+          }
+      break;
+      case MIDDLE_LEFT_MIDDLE:
+          switch(directionOnMove)
+          {
+            case GO_LEFT:
+              next_cube_position = MIDDLE_MIDDLE_REAR;
+            break;
+            case GO_RIGHT:
+              next_cube_position = MIDDLE_MIDDLE_FRONT;
+            break;
+          }
+      break;
+      case MIDDLE_MIDDLE_MIDDLE:
+      break;
+      case MIDDLE_RIGHT_MIDDLE:
+          switch(directionOnMove)
+          {
+            case GO_LEFT:
+              next_cube_position = MIDDLE_MIDDLE_FRONT;
+            break;
+            case GO_RIGHT:
+              next_cube_position = MIDDLE_MIDDLE_REAR;
+            break;
+          }
+      break;
+      case DOWN_LEFT_MIDDLE:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = MIDDLE_LEFT_FRONT;
+            break;
+            case GO_DOWN:
+              next_cube_position = MIDDLE_LEFT_REAR;
+            break;
+            case GO_LEFT:
+              next_cube_position = DOWN_MIDDLE_REAR;
+            break;
+            case GO_RIGHT:
+              next_cube_position = DOWN_MIDDLE_FRONT;
+            break;
+          }
+      break;
+      case DOWN_MIDDLE_MIDDLE:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = MIDDLE_MIDDLE_FRONT;
+            break;
+            case GO_DOWN:
+              next_cube_position = MIDDLE_MIDDLE_REAR;
+            break;
+          }
+      break;
+      case DOWN_RIGHT_MIDDLE:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = MIDDLE_RIGHT_FRONT;
+            break;
+            case GO_DOWN:
+              next_cube_position = MIDDLE_RIGHT_REAR;
+            break;
+            case GO_LEFT:
+              next_cube_position = DOWN_MIDDLE_FRONT;
+            break;
+            case GO_RIGHT:
+              next_cube_position = DOWN_MIDDLE_REAR;
+            break;
+          }
+      break;
+
+      // rear layer
+      case UP_LEFT_REAR:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = DOWN_LEFT_REAR;
+            break;
+            case GO_DOWN:
+              next_cube_position = UP_LEFT_FRONT;
+            break;
+            case GO_LEFT:
+              next_cube_position = UP_RIGHT_REAR;
+            break;
+            case GO_RIGHT:
+              next_cube_position = UP_LEFT_FRONT;
+            break;
+          }
+      break;
+      case UP_MIDDLE_REAR:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = DOWN_MIDDLE_REAR;
+            break;
+            case GO_DOWN:
+              next_cube_position = UP_MIDDLE_FRONT;
+            break;
+            case GO_LEFT:
+              next_cube_position = UP_RIGHT_MIDDLE;
+            break;
+            case GO_RIGHT:
+              next_cube_position = UP_LEFT_MIDDLE;
+            break;
+          }
+      break;
+      case UP_RIGHT_REAR:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = DOWN_RIGHT_REAR;
+            break;
+            case GO_DOWN:
+              next_cube_position = UP_RIGHT_FRONT;
+            break;
+            case GO_LEFT:
+              next_cube_position = UP_RIGHT_FRONT;
+            break;
+            case GO_RIGHT:
+              next_cube_position = UP_LEFT_REAR;
+            break;
+          }
+      break;
+      case MIDDLE_LEFT_REAR:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = DOWN_LEFT_MIDDLE;
+            break;
+            case GO_DOWN:
+              next_cube_position = UP_LEFT_MIDDLE;
+            break;
+            case GO_LEFT:
+              next_cube_position = MIDDLE_RIGHT_REAR;
+            break;
+            case GO_RIGHT:
+              next_cube_position = MIDDLE_LEFT_FRONT;
+            break;
+          }
+      break;
+      case MIDDLE_MIDDLE_REAR:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = DOWN_MIDDLE_MIDDLE;
+            break;
+            case GO_DOWN:
+              next_cube_position = UP_MIDDLE_MIDDLE;
+            break;
+            case GO_LEFT:
+              next_cube_position = MIDDLE_RIGHT_MIDDLE;
+            break;
+            case GO_RIGHT:
+              next_cube_position = MIDDLE_LEFT_MIDDLE;
+            break;
+          }
+      break;
+      case MIDDLE_RIGHT_REAR:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = DOWN_RIGHT_MIDDLE;
+            break;
+            case GO_DOWN:
+              next_cube_position = UP_RIGHT_MIDDLE;
+            break;
+            case GO_LEFT:
+              next_cube_position = MIDDLE_RIGHT_FRONT;
+            break;
+            case GO_RIGHT:
+              next_cube_position = MIDDLE_LEFT_REAR;
+            break;
+          }
+      break;
+      case DOWN_LEFT_REAR:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = DOWN_LEFT_FRONT;
+            break;
+            case GO_DOWN:
+              next_cube_position = UP_LEFT_REAR;
+            break;
+            case GO_LEFT:
+              next_cube_position = DOWN_RIGHT_REAR;
+            break;
+            case GO_RIGHT:
+              next_cube_position = DOWN_LEFT_FRONT;
+            break;
+          }
+      break;
+      case DOWN_MIDDLE_REAR:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = DOWN_MIDDLE_FRONT;
+            break;
+            case GO_DOWN:
+              next_cube_position = UP_MIDDLE_REAR;
+            break;
+            case GO_LEFT:
+              next_cube_position = DOWN_RIGHT_MIDDLE;
+            break;
+            case GO_RIGHT:
+              next_cube_position = DOWN_LEFT_MIDDLE;
+            break;
+          }
+      break;
+      case DOWN_RIGHT_REAR:
+          switch(directionOnMove)
+          {
+            case GO_UP:
+              next_cube_position = DOWN_RIGHT_FRONT;
+            break;
+            case GO_DOWN:
+              next_cube_position = UP_RIGHT_REAR;
+            break;
+            case GO_LEFT:
+              next_cube_position = DOWN_RIGHT_FRONT;
+            break;
+            case GO_RIGHT:
+              next_cube_position = DOWN_LEFT_REAR;
+            break;
+          }
+      break;
+  }
 }
 
 void CubeIndex::PrintDetails()

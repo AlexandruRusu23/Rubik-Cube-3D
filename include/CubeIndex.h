@@ -23,7 +23,8 @@ public:
 
 private:
   bool PartOfTheLayer(int areaId, int directionId);
-  void ChangePositionIdIfNeeded();
+  void ChangePositionIdIfNeeded(int directionOnMove);
+  void ReInit(int positionId);
 
 public:
   bool isMoving;
@@ -36,6 +37,7 @@ private:
   glm::vec3 next_rotation;
   glm::vec3 next_translate;
   int cube_position;
+  int next_cube_position;
   int rotation_direction;
   int translate_direction;
   time_t timer;
