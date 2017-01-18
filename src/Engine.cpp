@@ -10,7 +10,7 @@ Engine::Engine()
 //You can set params for init
 bool Engine::Init()
 {
-	WindowInfo window(std::string("Scene3D"), 400, 200, 800, 600, true);
+	WindowInfo window(std::string("Scene3D"), 100, 50, 1200, 800, true);
 	ContextInfo context(3, 3, true);
 	FrameBufferInfo frameBufferInfo(true, true, true, true);
 

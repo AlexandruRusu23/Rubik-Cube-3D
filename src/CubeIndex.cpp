@@ -242,11 +242,17 @@ void CubeIndex::Update()
     if(rotation == next_rotation)
     {
       isMoving = false;
-
-      ReInit(next_cube_position);
       cube_position = next_cube_position;
-      //rotation = glm::vec3(0.0, 35.0, 0.0);
-      //next_rotation = rotation;
+      if(abs(rotation.x) == 360)
+      {
+          rotation.x = 0;
+          next_rotation.x = 0;
+      }
+      if(abs(rotation.y) == 360)
+      {
+          rotation.y = 0;
+          next_rotation.y = 0;
+      }
     }
 }
 
@@ -305,7 +311,6 @@ void CubeIndex::Move(int areaId, int directionId)
               directionId = NONE;
           break;
         }
-        printf("%d %d\n", cube_position, next_cube_position);
     }
 
     isMoving = true;
@@ -313,6 +318,7 @@ void CubeIndex::Move(int areaId, int directionId)
 
 void CubeIndex::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
+    glUniform1i(0, 0);
     glUseProgram(program);
     glBindVertexArray(vao);
 

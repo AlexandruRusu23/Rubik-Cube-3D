@@ -7,6 +7,7 @@ layout(location = 1) in vec4 in_color;
 uniform mat4 projection_matrix, view_matrix;
 uniform vec3 rotation;
 uniform mat4 translate_matrix;
+uniform int code_refresh;
 
 out vec4 color;
 
@@ -29,6 +30,8 @@ void main()
                     sin(rotation.z), cos(rotation.z), 0.0, 0.0,
                     0.0, 0.0, 1.0, 0.0,
                     0.0, 0.0, 0.0, 1.0);
-
-    gl_Position = projection_matrix * view_matrix * rotate_y * rotate_x * rotate_z * translate_matrix * vec4(in_position, 1);
+    if(code_refresh == 0)
+      gl_Position = projection_matrix * view_matrix * rotate_y * rotate_x * rotate_z * translate_matrix * vec4(in_position, 1);
+    if(code_refresh == 1)
+      gl_Position = projection_matrix * view_matrix * translate_matrix * rotate_y * rotate_x * rotate_z * vec4(in_position, 1);
 }

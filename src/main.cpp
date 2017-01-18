@@ -1,5 +1,7 @@
 #include "Engine.h"
 #include "CubeIndex.h"
+#include "Cone.h"
+#include "Floor.h"
 #include <SOIL/SOIL.h>
 
 using namespace BasicEngine;
@@ -25,6 +27,16 @@ int main(int argc, char **argv)
 		engine->GetModels_Manager()->SetModel("cubeIndex" + std::to_string(contor), (*it));
 		contor++;
 	}
+
+	Cone* cone = new Cone();
+	cone->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
+	cone->Create();
+	engine->GetModels_Manager()->SetModel("cube", cone);
+
+	Floor* flor = new Floor();
+	flor->SetProgram(engine->GetShader_Manager()->GetShader("cubeShader"));
+	flor->Create();
+	engine->GetModels_Manager()->SetModel("flor", flor);
 
 	engine->Run();
 
