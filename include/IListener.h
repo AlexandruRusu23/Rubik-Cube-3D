@@ -13,6 +13,7 @@ namespace BasicEngine
       //keyboard and mouse functions
       virtual void NotifyKeyboardPressed(unsigned char key, int x, int y) = 0;
       virtual void NotifySpecialKeyboardPressed(int key, int x, int y) = 0;
+      virtual void NotifyMouseMovement(int x, int y) = 0;
 
       //drawing functions
       virtual void NotifyBeginFrame() = 0;

@@ -35,6 +35,7 @@ namespace BasicEngine
 				static void ReshapeCallback(int width, int height);
 				static void KeyboardCallback(unsigned char key, int x, int y);
 				static void SpecialKeyboardCallback(int key, int x, int y);
+				static void MouseCallback(int x, int y);
 				static void CloseCallback();
 
 			private:

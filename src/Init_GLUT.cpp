@@ -36,6 +36,7 @@ void Core::Init::Init_GLUT::Init(const Core::WindowInfo& windowInfo, const Core:
 	glutCloseFunc(CloseCallback);
 	glutKeyboardFunc(KeyboardCallback);
 	glutSpecialFunc(SpecialKeyboardCallback);
+	glutPassiveMotionFunc(MouseCallback);
 	glutDisplayFunc(DisplayCallback);
 	glutReshapeFunc(ReshapeCallback);
 
@@ -100,6 +101,12 @@ void Core::Init::Init_GLUT::SpecialKeyboardCallback(int key, int x, int y)
 {
 	if(listener)
 		listener->NotifySpecialKeyboardPressed(key, x, y);
+}
+
+void Core::Init::Init_GLUT::MouseCallback(int x, int y)
+{
+	if(listener)
+		listener->NotifyMouseMovement(x, y);
 }
 
 void Core::Init::Init_GLUT::CloseCallback()

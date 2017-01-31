@@ -16,6 +16,7 @@ namespace BasicEngine
 
       virtual void NotifyKeyboardPressed(unsigned char key, int x, int y);
       virtual void NotifySpecialKeyboardPressed(int key, int x, int y);
+      virtual void NotifyMouseMovement(int x, int y);
 
       virtual void NotifyBeginFrame();
       virtual void NotifyDisplayFrame();
@@ -31,8 +32,11 @@ namespace BasicEngine
       int directionId;
       bool printDetails;
 
+      int lastMouseX, lastMouseY;
+
       glm::mat4 projection_matrix;
       glm::mat4 view_matrix;
+      glm::vec3 observator, referencePoint, vertPlane;
     };
   }
 }
